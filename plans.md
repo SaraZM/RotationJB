@@ -4,7 +4,6 @@
 * find a learn a good text editor (eg: vim, emacs, ...)
 * learn git/github to collaborate 
 	- read and work on http://www.reproducibleimaging.org/module-reproducible-basics/
-<<<<<<< HEAD
 	- make sure you read "the git parabole", and "curious git"
 * search literature Bayesian approach.
 * reproduce Nipype tutorial
@@ -14,4 +13,4 @@
 	- make sure you read "the git parabole" (http://tom.preston-werner.com/2009/05/19/the-git-parable.html), and "curious git" (in the material already)
 
 
->>>>>>> 3f50feed911f68132e06842841815e2f5553f5e4
+
