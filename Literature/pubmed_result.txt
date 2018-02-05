@@ -1,0 +1,18 @@
+
+1: Soch J, Meyer AP, Haynes JD, Allefeld C. How to improve parameter estimates in
+GLM-based fMRI data analysis: cross-validated Bayesian model averaging.
+Neuroimage. 2017 Sep;158:186-195. doi: 10.1016/j.neuroimage.2017.06.056. Epub
+2017 Jun 29. PubMed PMID: 28669903.
+
+
+2: Eklund A, Lindquist MA, Villani M. A Bayesian heteroscedastic GLM with
+application to fMRI data with motion spikes. Neuroimage. 2017 Jul 15;155:354-369.
+doi: 10.1016/j.neuroimage.2017.04.069. Epub 2017 May 1. PubMed PMID: 28473287.
+
+
+3: Soch J, Haynes JD, Allefeld C. How to avoid mismodelling in GLM-based fMRI
+data analysis: cross-validated Bayesian model selection. Neuroimage. 2016 Nov
+1;141:469-489. doi: 10.1016/j.neuroimage.2016.07.047. Epub 2016 Jul 28. PubMed
+PMID: 27477536.
+
+4: Woolrich M. Bayesian inference in FMRI. Neuroimage. 2012 Aug 15;62(2):801-10. doi: 10.1016/j.neuroimage.2011.10.047. Epub 2011 Oct 20. PubMed PMID: 22063092
