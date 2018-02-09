@@ -16,3 +16,7 @@ data analysis: cross-validated Bayesian model selection. Neuroimage. 2016 Nov
 PMID: 27477536.
 
 4: Woolrich M. Bayesian inference in FMRI. Neuroimage. 2012 Aug 15;62(2):801-10. doi: 10.1016/j.neuroimage.2011.10.047. Epub 2011 Oct 20. PubMed PMID: 22063092
+
+5. Stat Methods Med Res. 2013 Aug;22(4):364-81. doi: 10.1177/0962280212448970. Epub 2012 May 23.
+A Bayesian non-parametric Potts model with application to pre-surgical FMRI data.
+Johnson TD1, Liu Z, Bartsch AJ, Nichols TE.
