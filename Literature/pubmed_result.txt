@@ -9,14 +9,17 @@ Neuroimage. 2017 Sep;158:186-195. doi: 10.1016/j.neuroimage.2017.06.056. Epub
 application to fMRI data with motion spikes. Neuroimage. 2017 Jul 15;155:354-369.
 doi: 10.1016/j.neuroimage.2017.04.069. Epub 2017 May 1. PubMed PMID: 28473287.
 
+3:Zhang L, Guindani M, Vannucci M. Bayesian Models for fMRI Data Analysis.
+Wiley Interdiscip Rev Comput Stat. 2015 Jan-Feb;7(1):21-41. doi: 10.1002/wics.1339.PubMed PMID: 25750690 
+
 # excluded
-3: Soch J, Haynes JD, Allefeld C. How to avoid mismodelling in GLM-based fMRI
+4: Soch J, Haynes JD, Allefeld C. How to avoid mismodelling in GLM-based fMRI
 data analysis: cross-validated Bayesian model selection. Neuroimage. 2016 Nov
 1;141:469-489. doi: 10.1016/j.neuroimage.2016.07.047. Epub 2016 Jul 28. PubMed
 PMID: 27477536.
 
-4: Woolrich M. Bayesian inference in FMRI. Neuroimage. 2012 Aug 15;62(2):801-10. doi: 10.1016/j.neuroimage.2011.10.047. Epub 2011 Oct 20. PubMed PMID: 22063092
+5: Woolrich M. Bayesian inference in FMRI. Neuroimage. 2012 Aug 15;62(2):801-10. doi: 10.1016/j.neuroimage.2011.10.047. Epub 2011 Oct 20. PubMed PMID: 22063092
 
-5. Stat Methods Med Res. 2013 Aug;22(4):364-81. doi: 10.1177/0962280212448970. Epub 2012 May 23.
+6: Stat Methods Med Res. 2013 Aug;22(4):364-81. doi: 10.1177/0962280212448970. Epub 2012 May 23.
 A Bayesian non-parametric Potts model with application to pre-surgical FMRI data.
 Johnson TD1, Liu Z, Bartsch AJ, Nichols TE.
