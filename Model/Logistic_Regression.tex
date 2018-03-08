@@ -1,0 +1,41 @@
+\documentclass[14pt,a4paper]{article}
+\usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx,mathtools}
+\usepackage{enumerate} 
+\usepackage{fixmath} 
+
+
+\newcommand{\equparrow}[1][1]{\stackrel{\text{\scalebox{1}[#1]{$\uparrow$}}}{=}}
+\newcommand{\equparrowx}[2][1]{\stackrel{\mathclap{#2}}{\equparrow[#1]}}
+\author{Sara Zapata-Marin}
+\title{Logistic Regression model to estimate voxel activation}
+\begin{document}
+
+\maketitle
+
+We let $Y_{ij}$ be the $j-$th voxel of study $i$,
+
+\[ y_{ij}=
+\begin{cases}
+      1 \qquad  \text{if is \textit{on} in the \textit{i}-\text{th} study}\\
+      0 \qquad  \text{if is \textit{off} in the \textit{i}-\text{th} study}
+    \end{cases} \]
+For $i=1,2,....,I$.
+With one voxel we can assume that it follows a Bernoulli distribution,
+
+\[
+Y_{ij} \sim Bernoulli(\pi_{ij})
+\]
+
+\[ log\dfrac{\pi_{ij}}{1-\pi_{ij}}= \beta_0+\sum_{k=1}^p \beta_k X_{ijk},\]
+
+where $X=(X_{ij1},...,X_{ijp})$ are possible covariates that influence the activation of the voxel $j$. Information about the possible covariates of each study will be needed.
+\\ After estimation $\pi_{ij}$ we can build our prior based on the average values of the $\pi_{ij}$'s over studies. Our probability surface would be estimated as
+\[ \pi_j=\dfrac{1}{I}\sum_{i=1}^I \pi_{ij}\]
+\\We need to assign the prior distribution of $\beta=(\beta_0,...,\beta_p)$. It is reasonable to assume that the $\beta_k$ are independend and follow a zero mean normal distribution with large and fixed variance. 
+\\For the posterior distribution we will use a Markov Chain Monte Carlo method to obtain samples from the resultant posterior distribution.
+\end{document}
