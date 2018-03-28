@@ -34,7 +34,7 @@ and the kernel of the posterior distribution of $\beta_0$ defined as,
 
 \begin{enumerate}
 \item First we define the proposed $\beta_0$ which follows a normal distribution which mean is the current $\beta_0$ and a known variance $u$ ($\beta_0^p \sim N(\beta_0^c,u)$ ).
-\item We accept the proposed value with probability $\propto = min(1, ratio)$, where the ratio is defined as,
+\item We accept the proposed value with probability $\alpha = min(1, ratio)$, where the ratio is defined as,
 \end{enumerate}
 
 \[ \text{ratio}=\dfrac{p(\beta_0^p|\textbf{y})\quad q(\beta_0^c|\beta_0^p)}{p(\beta_0^c|\textbf{y}) \quad q(\beta_0^p|\beta_0^c)}=\dfrac{\prod_{i=1}^n\left(\dfrac{exp(\beta_0^p)}{1+exp(\beta_0^p)}\right)^{y_i}\left( \dfrac{1}{1+exp(\beta_0^p)}\right)^{1-y_i}}{\prod_{i=1}^n\left(\dfrac{exp(\beta_0^c)}{1+exp(\beta_0^c)}\right)^{y_i}\left( \dfrac{1}{1+exp(\beta_0^c)}\right)^{1-y_i}}\times \dfrac{exp\left(\dfrac{-1}{2c_0}(\beta_0^p-m_0)^2\right)}{exp\left(\dfrac{-1}{2c_0}(\beta_0^c-m_0)^2\right)}\].
