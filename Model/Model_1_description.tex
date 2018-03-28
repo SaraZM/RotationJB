@@ -1,0 +1,48 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\title{Model Part 1: No covariates}
+\author{Sara Zapata-Marin}
+\begin{document}
+\maketitle
+
+For 1 voxel we have that is either active or not in the $i$-th study,
+\[ Y_i= 
+\begin{cases}
+1,\qquad \text{is in the study}\\
+0, \qquad \text{otherwise}
+\end{cases},
+\]
+So it follows a Bernoulli distribution with mean $\pi_i$,
+\[Y_i \sim Bern(\pi_i) \qquad 0<\pi_i <1\]
+In this first approach, we consider we don't have any covariates, so the logistic regression would be defined as,
+\[ log \left(\dfrac{\pi_i}{1-\pi_i} \right)=\beta_0 \quad \Rightarrow  \quad \pi_i = \dfrac{exp(\beta_0)}{1+ exp(\beta_0)}. \]
+The likelihood is,
+\[ f(\textbf{y}| \beta_0)= \prod_{i=1}^{n} f(y_i| \beta_0)=\prod_{i=1}^{n} \pi_i^{y_i}(1-\pi_i)^{1-y_i},\]
+where $ \beta_0 \sim N(m_0,c_0) $ with known $m_0$ and $c_0$.
+With a prior distribution,
+\[
+p(\beta_0)\propto exp\left( \dfrac{-1}{2c_0}(\beta_0-m_0)^2 \right),
+\]
+and the kernel of the posterior distribution of $\beta_0$ defined as,
+
+\[p(\beta_0|\textbf{y})\propto \left[ \prod_{i=1}^{n} \pi_i^{y_i}(1-\pi_i)^{1-y_i} \right]\].
+
+\textbf{Metropolis-Hastings step}
+
+\begin{enumerate}
+\item First we define the proposed $\beta_0$ which follows a normal distribution which mean is the current $\beta_0$ and a known variance $u$ ($\beta_0^p \sim N(\beta_0^c,u)$ ).
+\item We accept the proposed value with probability $\propto = min(1, ratio)$, where the ratio is defined as,
+\end{enumerate}
+
+\[ \text{ratio}=\dfrac{p(\beta_0^p|\textbf{y})\quad q(\beta_0^c|\beta_0^p)}{p(\beta_0^c|\textbf{y}) \quad q(\beta_0^p|\beta_0^c)}=\dfrac{\prod_{i=1}^n\left(\dfrac{exp(\beta_0^p)}{1+exp(\beta_0^p)}\right)^{y_i}\left( \dfrac{1}{1+exp(\beta_0^p)}\right)^{1-y_i}}{\prod_{i=1}^n\left(\dfrac{exp(\beta_0^c)}{1+exp(\beta_0^c)}\right)^{y_i}\left( \dfrac{1}{1+exp(\beta_0^c)}\right)^{1-y_i}}\times \dfrac{exp\left(\dfrac{-1}{2c_0}(\beta_0^p-m_0)^2\right)}{exp\left(\dfrac{-1}{2c_0}(\beta_0^c-m_0)^2\right)}\].
+
+If we change to logarithms we have,
+
+\[ log(ratio)=
+ \dfrac{\sum_{i=1}^n y_i(\beta_0^p-log(1+exp(\beta_0^p)))- (1-y_i)(log(1+exp(\beta_0^p)))-\dfrac{1}{2c_0}(\beta_0^p-m_0)^2}{\sum_{i=1}^n y_i(\beta_0^c-log(1+exp(\beta_0^c)))- (1-y_i)(log(1+exp(\beta_0^c)))-\dfrac{1}{2c_0}(\beta_0^c-m_0)^2}
+\]
+\textbf{Note:} All the code for the model described above is in the R file named: \texttt{Logistic\_Regression\_NCov.r}
+\end{document}
