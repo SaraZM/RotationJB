@@ -3,8 +3,8 @@ n<-100
 beta0<-0.1
 # Mean and variance of beta0 beta0 ~ N(m0,c0)
 m0<-0
-v0 <- 10
-pi_i <-exp(mean)/(1+exp(mean))
+c0 <- 10
+pi_i <-exp(beta0)/(1+exp(beta0))
 # Simulate data for y as a random Bernoulli distribution
 y<-rbinom(n,1,pi_i)
 iter=2000
@@ -15,7 +15,7 @@ chain_beta0[1]=1
 ### Define function for the numerator and denominator
 logaritmo <- function(beta){
   likel <- y*(beta-log(1+exp(beta)))-(1-y)*log(1+exp(beta))
-  fbeta <- sum(likel)-0.5*(1/var)*(beta-mean)^2
+  fbeta <- sum(likel)-0.5*(1/c0)*(beta-m0)^2
   return(fbeta)
 }
 # Define the variance of the proposed beta0
