@@ -1,7 +1,9 @@
-PROJECT=Logistic_Regression
+PROJECT1=Logistic_Regression
+PROJECT2=Model_1_description
 TEX=pdflatex
 BIBTEX=bibtex
-BUILDTEX=$(TEX) $(PROJECT).tex
+BUILDTEX1=$(TEX) $(PROJECT1).tex
+BUILDTEX2=$(TEX) $(PROJECT2).tex
 
 .PHONY: help clean tics all bio pack
 
@@ -12,11 +14,21 @@ help:
 	@echo "  clean 	 to clean " 
 	@echo "  all to make clean, make tics, and launch " 
 
-all:
-	$(BUILDTEX)
+
+nocov:
+	$(BUILDTEX2)
 	#$(BIBTEX) $(PROJECT)
-	$(BUILDTEX)
-	$(BUILDTEX)
+	$(BUILDTEX2)
+	$(BUILDTEX2)
+logistic:
+	$(BUILDTEX1)
+	#$(BIBTEX) $(PROJECT)
+	$(BUILDTEX1)
+	$(BUILDTEX1)
+
+all: 
+	nocov
+	logistic
 
 clean-all:
 	rm -f *.dvi *.log *.bak *.aux *.bbl *.blg *.idx *.ps *.eps *.pdf *.toc *.out *~
