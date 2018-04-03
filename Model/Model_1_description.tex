@@ -26,9 +26,9 @@ With a prior distribution,
 \[
 p(\beta_0)\propto exp\left( \dfrac{-1}{2c_0}(\beta_0-m_0)^2 \right),
 \]
-and the kernel of the posterior distribution of $\beta_0$ defined as,
+and the posterior distribution defined as,
 
-\[p(\beta_0|\textbf{y})\propto \left[ \prod_{i=1}^{n} \pi_i^{y_i}(1-\pi_i)^{1-y_i} \right]\].
+\[p(\beta_0|\textbf{y})\propto \left[ \prod_{i=1}^{n} \pi_i^{y_i}(1-\pi_i)^{1-y_i} \right] \times exp\left( \dfrac{-1}{2 c_0}(\beta_0-m_0)^2)\right)\] .
 
 \textbf{Metropolis-Hastings step}
 

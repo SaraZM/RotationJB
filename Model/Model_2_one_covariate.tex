@@ -1,0 +1,51 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\author{Sara Zapata-Marin}
+\title{Model Part 2: with one covariate}
+\begin{document}
+\maketitle
+
+As in Model Part 1 we have  1 voxel that is either active or not in the $i$-th study,
+\[ Y_i= 
+\begin{cases}
+1,\qquad \text{is in the study}\\
+0, \qquad \text{otherwise}
+\end{cases},
+\]
+So it follows a Bernoulli distribution with mean $\pi_i$,
+\[Y_i \sim Bern(\pi_i) \qquad 0<\pi_i <1\]
+In this second approach, we now have covariates, so the regression would be defined as,
+\[ log \left(\dfrac{\pi_i}{1-\pi_i} \right)=\beta_0+\beta_1 X_{i} \quad \Rightarrow  \quad \pi_i = \dfrac{exp(\beta_0+\beta_1 X_{i}) }{1+ exp(\beta_0+\beta_1 X_{i} )}. \]
+The likelihood is,
+\[ f(\textbf{y}| \Theta)=\prod_{i=1}^{n} \pi_i^{y_i}(1-\pi_i)^{1-y_i},\]
+where $\Theta =\{ \beta_0, \beta_{1}\}$. Here we are assuming that the $\beta_1$ and $\beta_0$  are independent, $\beta_0$ follows a normal distribution with known mean $m_0$ and variance $c_0$ and $\beta_1 \sim N(m_1, c_1) $ .
+\\  \textbf{Posterior distribution} 
+
+\[p(\Theta|\textbf{y})\propto \left[ \prod_{i=1}^{n} \pi_i^{y_i}(1-\pi_i)^{1-y_i} \right] \times exp\left(\dfrac{-1}{2c_0}(\beta_0-m_0)^2\right) \times exp \left( \dfrac{-1}{2c_1} (\beta_1-m_1)^2\right) \],
+
+then the posterior full conditionals would be,
+
+\[p(\beta_0|\textbf{y}, \beta_1)= \left[ \prod_{i=1}^{n} \pi_i^{y_i}(1-\pi_i)^{1-y_i} \right] \times exp\left(\dfrac{-1}{2c_0}(\beta_0-m_0)^2\right)\],
+
+\[p(\beta_0|\textbf{y}, \beta_1)= \left[ \prod_{i=1}^{n} \pi_i^{y_i}(1-\pi_i)^{1-y_i} \right] \times exp\left(\dfrac{-1}{2c_1}(\beta_1-m_1)^2\right)\],
+
+\textbf{Metropolis-Hastings step}
+\\Following the same procedure as in Model Part 1, but this time we estimate two parameters.
+\\We define the proposed distributions as $\beta_0^p \sim N(\beta_0^c,u_0)$ and $\beta_1^p \sim N(\beta_1^c,u_1)$ 
+ 
+\[ \text{ratio } \beta_0=\dfrac{p(\beta_0^p|\textbf{y}, \beta_1)\quad q(\beta_0^c|\beta_0^p)}{p(\beta_0^c|\textbf{y}, \beta_1) \quad q(\beta_0^p|\beta_0^c)}=\dfrac{\prod_{i=1}^n\left(\dfrac{exp(\beta_0^p + \beta_1 X_i)}{1+exp(\beta_0^p + \beta_1 X_i)}\right)^{y_i}\left( \dfrac{1}{1+exp(\beta_0^p + \beta_1 X_i)}\right)^{1-y_i}}{\prod_{i=1}^n\left(\dfrac{exp(\beta_0^c+ \beta_1 X_i)}{1+exp(\beta_0^c+ \beta_1 X_i)}\right)^{y_i}\left( \dfrac{1}{1+exp(\beta_0^c+ \beta_1 X_i)}\right)^{1-y_i}}\]
+\[\times \dfrac{exp\left(\dfrac{-1}{2c_0}(\beta_0^p-m_0)^2\right)}{exp\left(\dfrac{-1}{2c_0}(\beta_0^c-m_0)^2\right)}\].
+
+\[ \text{ratio } \beta_1=\dfrac{p(\beta_1^p|\textbf{y}, \beta_0)\quad q(\beta_1^c|\beta_1^p)}{p(\beta_1^c|\textbf{y},\beta_0) \quad q(\beta_1^p|\beta_1^c)}=\dfrac{\prod_{i=1}^n\left(\dfrac{exp(\beta_0 + \beta_1^p X_i)}{1+exp(\beta_0 + \beta_1^p X_i)}\right)^{y_i}\left( \dfrac{1}{1+exp(\beta_0 + \beta_1^p X_i)}\right)^{1-y_i}}{\prod_{i=1}^n\left(\dfrac{exp(\beta_0+ \beta_1^c X_i)}{1+exp(\beta_0+ \beta^c_1 X_i)}\right)^{y_i}\left( \dfrac{1}{1+exp(\beta_0+ \beta_1^c X_i)}\right)^{1-y_i}}\]
+\[\times \dfrac{exp\left(\dfrac{-1}{2c_1}(\beta_1^p-m_1)^2\right)}{exp\left(\dfrac{-1}{2c_1}(\beta_1^c-m_1)^2\right)}\].
+
+%If we change to logarithms we have,
+%
+%\[ log(ratio)=
+% \dfrac{\sum_{i=1}^n y_i(\beta_0^p-log(1+exp(\beta_0^p)))- (1-y_i)(log(1+exp(\beta_0^p)))-\dfrac{1}{2c_0}(\beta_0^p-m_0)^2}{\sum_{i=1}^n y_i(\beta_0^c-log(1+exp(\beta_0^c)))- (1-y_i)(log(1+exp(\beta_0^c)))-\dfrac{1}{2c_0}(\beta_0^c-m_0)^2}
+%\]
+%\textbf{Note:} All the code for the model described above is in the R file named: \texttt{Logistic\_Regression\_NCov.r}
+\end{document}
