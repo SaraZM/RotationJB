@@ -1,0 +1,59 @@
+\documentclass[10pt]{article}
+\usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{cancel}
+
+\title{Model Part 1: No covariates}
+\author{Sara Zapata-Marin}
+\begin{document}
+\maketitle
+
+With this model we try to take advantage of all the information collected from different articles (brainspell) to create something similar to a probability map of the brain were the there is a chance for each voxel of being active according to the number of articles that found it to be active.
+\\ As a first step we simulate all the data to test our model.
+\\
+Each voxel has two possible states active or inactive in the $i$-th study,
+\[ Y_i= 
+\begin{cases}
+1,\qquad \text{is in the study}\\
+0, \qquad \text{otherwise}
+\end{cases}.
+\]
+So $Y_i$ follows a Bernoulli distribution with mean $\pi_i$,
+\[Y_i \sim Bern(\pi_i) \qquad 0<\pi_i <1\]
+In this first approach, we consider we don't have any covariates, so the logistic regression would be defined as,
+\[ log \left(\dfrac{\pi_i}{1-\pi_i} \right)=\beta_0 \quad \Rightarrow  \quad \pi_i = \dfrac{exp(\beta_0)}{1+ exp(\beta_0)}. \]
+The likelihood is,
+\[ f(\textbf{y}| \beta_0)= \prod_{i=1}^{n} f(y_i| \beta_0)=\prod_{i=1}^{n} \pi_i^{y_i}(1-\pi_i)^{1-y_i},\]
+where $ \beta_0 \sim N(m_0,c_0) $ with known $m_0$ and $c_0$.
+With a prior distribution,
+\[
+p(\beta_0)\propto exp\left( \dfrac{-1}{2c_0}(\beta_0-m_0)^2 \right),
+\]
+and the posterior distribution defined as,
+
+\[p(\beta_0|\textbf{y})\propto \left[ \prod_{i=1}^{n} \pi_i^{y_i}(1-\pi_i)^{1-y_i} \right] \times exp\left( \dfrac{-1}{2 c_0}(\beta_0-m_0)^2)\right)\] .
+
+\textbf{Metropolis-Hastings}
+The Metropolis-Hastings method is Markov Chain Monte Carlo (MCMC) sampling methof to obtain a sequence of random samples from a probability distribution when direct sampling is difficult.
+\\ In this case it works as follows:
+
+\begin{enumerate}
+\item First we define the proposed $\beta_0$ which follows a normal distribution which mean is the current $\beta_0$ and a known variance $u$ ($\beta_0^p \sim N(\beta_0^c,u)$ ).
+\item We accept the proposed value with probability $\alpha = min(1, ratio)$, where the ratio is defined as,
+\end{enumerate}
+
+\[ \text{ratio}=\dfrac{p(\beta_0^p|\textbf{y})\quad q(\beta_0^c|\beta_0^p)}{p(\beta_0^c|\textbf{y}) \quad q(\beta_0^p|\beta_0^c)} \]
+ where $\textbf{q}$ is the proposal distribution, which is the probability of the current value given the proposed value and viceversa. Then,
+\[
+ratio=\dfrac{\prod_{i=1}^n\left(\dfrac{exp(\beta_0^p)}{1+exp(\beta_0^p)}\right)^{y_i}\left( \dfrac{1}{1+exp(\beta_0^p)}\right)^{1-y_i}}{\prod_{i=1}^n\left(\dfrac{exp(\beta_0^c)}{1+exp(\beta_0^c)}\right)^{y_i}\left( \dfrac{1}{1+exp(\beta_0^c)}\right)^{1-y_i}}\times \dfrac{exp\left(\dfrac{-1}{2c_0}(\beta_0^p-m_0)^2\right)}{exp\left(\dfrac{-1}{2c_0}(\beta_0^c-m_0)^2\right)}\times \dfrac{\cancel{exp\left(-\dfrac{1}{2u}(\beta_{0}^c-\beta_{0}^p)^2\right)}}{\cancel{exp\left(-\dfrac{1}{2u}(\beta_{0}^p-\beta_{0}^c)^2\right)}}\].
+
+If we change to logarithms we have,
+
+\[ \dfrac{log(numerator)}{log(denominator)}=
+ \dfrac{\sum_{i=1}^n y_i(\beta_0^p-log(1+exp(\beta_0^p)))- (1-y_i)(log(1+exp(\beta_0^p)))-\dfrac{1}{2c_0}(\beta_0^p-m_0)^2}{\sum_{i=1}^n y_i(\beta_0^c-log(1+exp(\beta_0^c)))- (1-y_i)(log(1+exp(\beta_0^c)))-\dfrac{1}{2c_0}(\beta_0^c-m_0)^2}
+\]
+\textbf{Note:} All the code for the model described above is in the R file named: \texttt{Model1\_NoCov.r}
+\end{document}
