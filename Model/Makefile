@@ -1,6 +1,6 @@
 PROJECT1=Logistic_Regression
-PROJECT2=Model_1_description
-PROJECT3=Model_2_one_covariate
+PROJECT2=Model1_NoCov
+PROJECT3=Model2_OneCovariate
 TEX=pdflatex
 BIBTEX=bibtex
 BUILDTEX1=$(TEX) $(PROJECT1).tex
